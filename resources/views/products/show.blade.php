@@ -1,7 +1,7 @@
 
-@extends('layouts.app')
+<x-layout>
+    <x-slot:title>{{ $product->name }}</x-slot:title>
 
-@section('content')
     <h1>{{ $product->name }}</h1>
 
     <p>{{ $product->description }}</p>
@@ -9,4 +9,4 @@
 
     <a href="{{ route('products.edit', $product) }}">Labot</a>
     <a href="{{ route('products.index') }}">Atpakaļ uz sarakstu</a>
-@endsection
+</x-layout>

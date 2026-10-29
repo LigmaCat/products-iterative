@@ -1,6 +1,7 @@
-@extends('layouts.app')
 
-@section('content')
+<x-layout>
+    <x-slot:title>Produktu saraksts</x-slot:title>
+
     <h1>Produkti</h1>
 
     <a href="{{ route('products.create') }}">Pievienot produktu</a>
@@ -24,4 +25,4 @@
     @empty
         <p>Vēl nav pievienots neviens produkts.</p>
     @endforelse
-@endsection
+</x-layout>

@@ -1,10 +1,10 @@
 
-@extends('layouts.app')
+<x-layout>
+    <x-slot:title>Jauns produkts</x-slot:title>
 
-@section('content')
     <h1>Jauns produkts</h1>
 
     <form action="{{ route('products.store') }}" method="POST">
         @include('products.form')
     </form>
-@endsection
+</x-layout>

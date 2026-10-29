@@ -1,9 +1,137 @@
-@import 'tailwindcss';
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
+/* Visas lapas pamata stili */
+* {
+    box-sizing: border-box;
+}
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #263238;
+    background-color: #f1f5f9;
+    line-height: 1.6;
+}
+
+/* Holy Grail izklājums */
+.holy-grail {
+    display: grid;
+
+    grid-template-columns: 220px minmax(0, 1fr) 220px;
+    grid-template-rows: auto minmax(400px, 1fr) auto;
+
+    grid-template-areas:
+        "header header header"
+        "left   main   right"
+        "footer footer footer";
+
+    min-height: 100vh;
+}
+
+/* Galvene */
+.header {
+    grid-area: header;
+    padding: 20px;
+    color: white;
+    background-color: #1e3a8a;
+}
+
+.header h1 {
+    margin: 0 0 10px;
+}
+
+.header nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+/* Sānjoslas */
+.sidebar {
+    padding: 20px;
+    background-color: #e2e8f0;
+}
+
+.sidebar-left {
+    grid-area: left;
+}
+
+.sidebar-right {
+    grid-area: right;
+}
+
+.sidebar h2 {
+    margin-top: 0;
+}
+
+.sidebar ul {
+    padding-left: 20px;
+}
+
+.sidebar a {
+    color: #1d4ed8;
+}
+
+/* Galvenais saturs */
+.main-content {
+    grid-area: main;
+    min-width: 0;
+    padding: 24px;
+    background-color: white;
+}
+
+.main-content h1,
+.main-content h2 {
+    color: #1e3a8a;
+}
+
+.success {
+    padding: 12px;
+    color: #166534;
+    background-color: #dcfce7;
+    border-radius: 6px;
+}
+
+/* Kājene */
+.footer {
+    grid-area: footer;
+    padding: 16px;
+    text-align: center;
+    color: white;
+    background-color: #334155;
+}
+
+.footer p {
+    margin: 0;
+}
+
+/* Responsīvs izklājums mobilajām ierīcēm */
+@media (max-width: 768px) {
+    .holy-grail {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-rows: auto auto minmax(300px, auto) auto auto;
+
+        grid-template-areas:
+            "header"
+            "left"
+            "main"
+            "right"
+            "footer";
+    }
+
+    .sidebar {
+        padding: 16px 20px;
+    }
+
+    .main-content {
+        padding: 20px;
+    }
 }

@@ -1,11 +1,11 @@
 
-@extends('layouts.app')
+<x-layout>
+    <x-slot:title>Labot produktu</x-slot:title>
 
-@section('content')
     <h1>Labot produktu</h1>
 
     <form action="{{ route('products.update', $product) }}" method="POST">
         @method('PUT')
         @include('products.form')
     </form>
-@endsection
+</x-layout>
