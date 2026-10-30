@@ -12,10 +12,14 @@
 <body>
     <div class="holy-grail">
 
-        <header class="header">
-            <h1>Produktu katalogs</h1>
+<header class="header">
+    <div class="logo">
+        <h2>MY LOGO</h2>
+    </div>
 
-            <nav aria-label="Galvenā navigācija">
+    <h1>Produktu katalogs</h1>
+
+    <nav aria-label="Galvenā navigācija">
                 <a href="{{ route('products.index') }}">Produkti</a>
                 <a href="{{ route('products.create') }}">Pievienot produktu</a>
             </nav>
@@ -39,15 +43,21 @@
             {{ $slot }}
         </main>
 
-        <aside class="sidebar sidebar-right">
-            <h2>Informācija</h2>
-            <p>Laipni lūdzam produktu katalogā!</p>
-            <p>Šeit vari apskatīt, pievienot, labot un dzēst produktus.</p>
-        </aside>
+<aside class="sidebar sidebar-right">
+    <h2>Informācija</h2>
+    <p>Laipni lūdzam produktu katalogā!</p>
+    <p>Šeit vari apskatīt, pievienot, labot un dzēst produktus.</p>
 
-        <footer class="footer">
-            <p>&copy; {{ date('Y') }} Produktu katalogs</p>
-        </footer>
+    <div class="advertisement">
+        <h3>REKLĀMA</h3>
+        <p>Izdevīgi piedāvājumi! Iegādājies mūsu produktus jau šodien!</p>
+    </div>
+</aside>
+
+<footer class="footer">
+    <p>&copy; {{ date('Y') }} Produktu katalogs. All rights reserved.</p>
+    <p>Testa copyright teksts.</p>
+</footer>
 
     </div>
 </body>

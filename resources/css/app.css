@@ -155,3 +155,22 @@ body {
         padding: 20px;
     }
 }
+/* Testa logo */
+.logo h2 {
+    margin: 0 0 10px;
+    color: white;
+}
+
+/* Reklāmas sadaļa */
+.advertisement {
+    margin-top: 25px;
+    padding: 15px;
+    background-color: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 6px;
+}
+
+.advertisement h3 {
+    margin-top: 0;
+    color: #92400e;
+}
