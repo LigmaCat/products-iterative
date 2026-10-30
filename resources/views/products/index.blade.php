@@ -9,7 +9,16 @@
     @forelse ($products as $product)
         <article>
             <h2>{{ $product->name }}</h2>
-            <p>{{ $product->price }} €</p>
+
+            <p>Daudzums: {{ $product->quantity }}</p>
+
+            <p>Apraksts: {{ $product->description }}</p>
+
+            <p>Derīguma termiņš: {{ $product->expiration_date }}</p>
+
+            <p>Statuss:
+                {{ $product->status === 'active' ? 'Aktīvs' : 'Neaktīvs' }}
+            </p>
 
             <a href="{{ route('products.show', $product) }}">Apskatīt</a>
             <a href="{{ route('products.edit', $product) }}">Labot</a>
