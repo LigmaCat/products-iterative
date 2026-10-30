@@ -35,13 +35,15 @@
             </ul>
         </aside>
 
-        <main class="main-content">
-            @if (session('success'))
-                <p class="success">{{ session('success') }}</p>
-            @endif
+<main class="main-content">
 
-            {{ $slot }}
-        </main>
+    <x-alert-success />
+
+    <x-alert-errors />
+
+    {{ $slot }}
+
+</main>
 
 <aside class="sidebar sidebar-right">
     <h2>Informācija</h2>

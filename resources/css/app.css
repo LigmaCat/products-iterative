@@ -174,3 +174,32 @@ body {
     margin-top: 0;
     color: #92400e;
 }
+
+/* Flash message components */
+.alert {
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+}
+
+/* Success message */
+.alert-success {
+    color: #166534;
+    background-color: #dcfce7;
+    border: 1px solid #86efac;
+}
+
+/* Validation errors */
+.alert-errors {
+    color: #991b1b;
+    background-color: #fee2e2;
+    border: 1px solid #fca5a5;
+}
+
+.alert-errors h3 {
+    margin-top: 0;
+}
+
+.alert-errors ul {
+    margin-bottom: 0;
+}
