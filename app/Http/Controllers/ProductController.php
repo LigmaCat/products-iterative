@@ -68,4 +68,35 @@ class ProductController extends Controller
         return redirect()->route('products.index')
             ->with('success', 'Produkts veiksmīgi dzēsts!');
     }
+public function increaseQuantity(Request $request, Product $product)
+{
+    $validated = $request->validate([
+        'amount' => 'required|integer|min:1',
+    ]);
+
+    $product->increaseQuantity($validated['amount']);
+
+    return redirect()
+        ->route('products.show', $product)
+        ->with('success', 'Product quantity increased successfully!');
+}
+
+public function decreaseQuantity(Request $request, Product $product)
+{
+    $validated = $request->validate([
+        'amount' => 'required|integer|min:1',
+    ]);
+
+    $success = $product->decreaseQuantity($validated['amount']);
+
+    if (!$success) {
+        return redirect()
+            ->route('products.show', $product)
+            ->with('error', 'Not enough products in stock!');
+    }
+
+    return redirect()
+        ->route('products.show', $product)
+        ->with('success', 'Product quantity decreased successfully!');
+}
 }

@@ -173,4 +173,78 @@ public function test_product_can_be_updated(): void
 
         $response->assertNotFound();
     }
+        public function test_product_quantity_can_be_increased(): void
+    {
+        $product = Product::factory()->create([
+            'quantity' => 10,
+        ]);
+
+        $response = $this->post(
+            route('products.increase', $product),
+            ['amount' => 5]
+        );
+
+        $response->assertRedirect(route('products.show', $product));
+
+        $this->assertDatabaseHas('products', [
+            'id' => $product->id,
+            'quantity' => 15,
+        ]);
+    }
+        public function test_product_quantity_can_be_decreased(): void
+    {
+        $product = Product::factory()->create([
+            'quantity' => 10,
+        ]);
+
+        $response = $this->post(
+            route('products.decrease', $product),
+            ['amount' => 3]
+        );
+
+        $response->assertRedirect(route('products.show', $product));
+
+        $this->assertDatabaseHas('products', [
+            'id' => $product->id,
+            'quantity' => 7,
+        ]);
+    }
+        public function test_product_quantity_cannot_be_decreased_below_zero(): void
+    {
+        $product = Product::factory()->create([
+            'quantity' => 5,
+        ]);
+
+        $response = $this->post(
+            route('products.decrease', $product),
+            ['amount' => 10]
+        );
+
+        $response->assertRedirect(route('products.show', $product));
+
+        $this->assertDatabaseHas('products', [
+            'id' => $product->id,
+            'quantity' => 5,
+        ]);
+
+        $response->assertSessionHas('error');
+    }
+        public function test_quantity_change_requires_a_positive_amount(): void
+    {
+        $product = Product::factory()->create([
+            'quantity' => 10,
+        ]);
+
+        $response = $this->post(
+            route('products.decrease', $product),
+            ['amount' => -5]
+        );
+
+        $response->assertSessionHasErrors(['amount']);
+
+        $this->assertDatabaseHas('products', [
+            'id' => $product->id,
+            'quantity' => 10,
+        ]);
+    }
 }
