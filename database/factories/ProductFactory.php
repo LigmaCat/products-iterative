@@ -94,17 +94,11 @@ class ProductFactory extends Factory
         $product = fake()->randomElement($products);
 
 return [
-    'name' => $product['name'],
-    'quantity' => fake()->numberBetween(0, 150),
-    'description' => $product['description'],
-    'expiration_date' => fake()
-        ->dateTimeBetween('now', '+2 years')
-        ->format('Y-m-d'),
-    'status' => fake()->randomElement([
-        'active',
-        'inactive',
-    ]),
-        'price' => fake()->randomFloat(2, 5, 2000),
-        ];
+    'name' => fake()->words(3, true),
+    'quantity' => fake()->numberBetween(0, 100),
+    'description' => fake()->paragraph(),
+    'expiration_date' => fake()->date(),
+    'status' => fake()->randomElement(['active', 'inactive']),
+];
     }
 }

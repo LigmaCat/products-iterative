@@ -1,7 +1,14 @@
 <?php
 
-test('the application returns a successful response', function () {
+use Illuminate\Foundation\Testing\RefreshDatabase;
+
+uses(RefreshDatabase::class);
+
+test('the products page is accessible from homepage', function () {
     $response = $this->get('/');
 
-    $response->assertStatus(200);
+    $response->assertRedirect(route('products.index'));
+
+    $this->get(route('products.index'))
+        ->assertOk();
 });

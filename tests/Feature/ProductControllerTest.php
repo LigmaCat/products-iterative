@@ -36,6 +36,7 @@ class ProductControllerTest extends TestCase
             'description' => 'Test description',
             'expiration_date' => '2027-12-31',
             'status' => 'active',
+            'price' => '10.15',
         ];
 
         $response = $this->post(
@@ -43,12 +44,15 @@ class ProductControllerTest extends TestCase
             $productData
         );
 
-        $response->assertRedirect(route('products.index'));
 
         $this->assertDatabaseHas('products', [
             'name' => 'Test Product',
             'quantity' => 10,
         ]);
+
+        $product = Product::where('name', 'Test Product')->firstOrFail();
+
+        $response->assertRedirect(route('products.show', $product));
     }
 
     public function test_product_show_page_is_accessible(): void
@@ -75,31 +79,31 @@ class ProductControllerTest extends TestCase
         $response->assertViewIs('products.edit');
     }
 
-    public function test_product_can_be_updated(): void
-    {
-        $product = Product::factory()->create();
+public function test_product_can_be_updated(): void
+{
+    $product = Product::factory()->create();
 
-        $updatedData = [
-            'name' => 'Updated Product',
-            'quantity' => 25,
-            'description' => 'Updated description',
-            'expiration_date' => '2028-06-30',
-            'status' => 'active',
-        ];
+    $updatedData = [
+        'name' => 'Updated Product',
+        'quantity' => 25,
+        'description' => 'Updated description',
+        'expiration_date' => '2028-06-30',
+        'status' => 'active',
+    ];
 
-        $response = $this->put(
-            route('products.update', $product),
-            $updatedData
-        );
+    $response = $this->put(
+        route('products.update', $product),
+        $updatedData
+    );
 
-        $response->assertRedirect(route('products.index'));
+    $response->assertRedirect(route('products.show', $product));
 
-        $this->assertDatabaseHas('products', [
-            'id' => $product->id,
-            'name' => 'Updated Product',
-            'quantity' => 25,
-        ]);
-    }
+    $this->assertDatabaseHas('products', [
+        'id' => $product->id,
+        'name' => 'Updated Product',
+        'quantity' => 25,
+    ]);
+}
 
     public function test_product_can_be_deleted(): void
     {
