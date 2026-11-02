@@ -247,4 +247,38 @@ public function test_product_can_be_updated(): void
             'quantity' => 10,
         ]);
     }
+        public function test_ajax_can_increase_product_quantity(): void
+    {
+        $product = Product::factory()->create([
+            'quantity' => 10,
+        ]);
+
+        $response = $this->postJson(
+            route('products.increase', $product),
+            ['amount' => 5]
+        );
+
+        $response->assertOk()
+            ->assertJson([
+                'success' => true,
+                'quantity' => 15,
+            ]); 
+    }
+        public function test_ajax_can_decrease_product_quantity(): void
+    {
+        $product = Product::factory()->create([
+            'quantity' => 10,
+        ]);
+
+        $response = $this->postJson(
+            route('products.decrease', $product),
+            ['amount' => 3]
+        );
+
+        $response->assertOk()
+            ->assertJson([
+                'success' => true,
+                'quantity' => 7,
+            ]);
+    }
 }

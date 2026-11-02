@@ -226,3 +226,34 @@ body {
     padding: 8px 14px;
     cursor: pointer;
 }
+.success-message {
+    color: green;
+    margin-top: 10px;
+}
+
+.error-message {
+    color: red;
+    margin-top: 10px;
+}
+
+.quantity-form {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 15px 0;
+}
+
+.quantity-form input {
+    width: 80px;
+    padding: 8px;
+}
+
+.quantity-form button {
+    padding: 8px 14px;
+    cursor: pointer;
+}
+
+.quantity-form button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}

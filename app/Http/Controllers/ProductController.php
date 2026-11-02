@@ -76,6 +76,14 @@ public function increaseQuantity(Request $request, Product $product)
 
     $product->increaseQuantity($validated['amount']);
 
+    if ($request->expectsJson()) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Product quantity increased successfully!',
+            'quantity' => $product->fresh()->quantity,
+        ]);
+    }
+
     return redirect()
         ->route('products.show', $product)
         ->with('success', 'Product quantity increased successfully!');
@@ -90,9 +98,24 @@ public function decreaseQuantity(Request $request, Product $product)
     $success = $product->decreaseQuantity($validated['amount']);
 
     if (!$success) {
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Not enough products in stock!',
+            ], 422);
+        }
+
         return redirect()
             ->route('products.show', $product)
             ->with('error', 'Not enough products in stock!');
+    }
+
+    if ($request->expectsJson()) {
+        return response()->json([
+            'success' => true,
+            'message' => 'Product quantity decreased successfully!',
+            'quantity' => $product->fresh()->quantity,
+        ]);
     }
 
     return redirect()

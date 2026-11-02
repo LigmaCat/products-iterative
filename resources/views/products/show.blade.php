@@ -18,13 +18,29 @@
 
     <hr>
 
+ 
+<div id="quantity-management">
+
     <h2>Noliktavas daudzuma pārvaldība</h2>
 
+    <p>
+        Daudzums:
+        <strong id="product-quantity">{{ $product->quantity }}</strong>
+    </p>
+
+    <p id="quantity-message" role="status" aria-live="polite"></p>
+
     {{-- Increase quantity --}}
-    <form action="{{ route('products.increase', $product) }}" method="POST">
+    <form
+        action="{{ route('products.increase', $product) }}"
+        method="POST"
+        class="quantity-form"
+    >
         @csrf
 
-        <label for="increase-amount">Pievedums (palielināt daudzumu):</label>
+        <label for="increase-amount">
+            Pievedums:
+        </label>
 
         <input
             type="number"
@@ -39,10 +55,16 @@
     </form>
 
     {{-- Decrease quantity --}}
-    <form action="{{ route('products.decrease', $product) }}" method="POST">
+    <form
+        action="{{ route('products.decrease', $product) }}"
+        method="POST"
+        class="quantity-form"
+    >
         @csrf
 
-        <label for="decrease-amount">Izpirkšana (samazināt daudzumu):</label>
+        <label for="decrease-amount">
+            Izpirkšana:
+        </label>
 
         <input
             type="number"
@@ -55,6 +77,9 @@
 
         <button type="submit">- Samazināt</button>
     </form>
+
+</div>
+
 
     <hr>
 
